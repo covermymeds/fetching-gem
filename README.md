@@ -1,11 +1,11 @@
-# SassyStruct
+# Fetching
 
 Turn deeply nested hashes and arrays (like an API response) into an whiney object with method syntax.
 
 ## Usage
 
 ```ruby
-Sassy(HTTParty.get(url, query: query)).forms[0].request_form_id
+Fetching(HTTParty.get(url, query: query)).forms[0].request_form_id
 
 # fails loudly unless the response from HTTParty has a top level `forms` key
 # fails loudly if `forms` is an empty array
@@ -16,7 +16,7 @@ Sassy(HTTParty.get(url, query: query)).forms[0].request_form_id
 
 Add this line to your application's Gemfile:
 
-    gem 'sassy_struct'
+    gem 'fetching', git: 'https://github.com/covermymeds/fetching-gem.git'
 
 And then execute:
 

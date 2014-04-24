@@ -1,15 +1,22 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'sassy_struct/version'
+require 'fetching/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "sassy_struct"
-  spec.version       = SassyStruct::VERSION
+  spec.name          = "fetching"
+  spec.version       = Fetching::VERSION
   spec.authors       = ["Michael Gee", "Mark Lorenz"]
-  spec.email         = ["michaelpgee@gmail.com", "mlorenz@covermymeds.com"]
+  spec.email         = ["mgee@covermymeds.com", "mlorenz@covermymeds.com"]
   spec.description   = %q{More sass in more structs.}
-  spec.summary       = %q{TODO: Write a gem summary}
+
+  spec.summary       = <<-HEREDOC
+This gem is a work in progress.  The implementation code is not what's
+important.  What is important: Don't de-serialize API responses in to
+hashes and arrays.  Use a "strict" object that inforces key presence,
+and array bounds.}
+HEREDOC
+
   spec.homepage      = ""
   spec.license       = "MIT"
 

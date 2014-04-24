@@ -2,13 +2,13 @@ require "json"
 
 module Kernel
 
-  def Sassy(arg)
-    Sassy.from(arg)
+  def Fetching(arg)
+    Fetching.from(arg)
   end
 
 end
 
-class Sassy
+class Fetching
 
   WHITELIST = %w[ define_singleton_method class object_id
                   == inspect to_s instance_variables instance_eval
@@ -19,9 +19,9 @@ class Sassy
   def self.from(value)
     case value
     when ->(v) { v.respond_to? :to_ary }
-      SassyArray.new(value.to_ary)
+      FetchingArray.new(value.to_ary)
     when ->(v) { v.respond_to? :to_hash }
-      SassyHash.new(value.to_hash)
+      FetchingHash.new(value.to_hash)
     else
       value
     end
@@ -50,12 +50,12 @@ class Sassy
 
 end
 
-class SassyArray < Sassy
+class FetchingArray < Fetching
 
   include Enumerable
 
   def [](index)
-    Sassy.from @table.fetch(index)
+    Fetching.from @table.fetch(index)
   end
 
   def each
@@ -66,7 +66,7 @@ class SassyArray < Sassy
 
 end
 
-class SassyHash < Sassy
+class FetchingHash < Fetching
 
   def initialize *args
     super
@@ -82,7 +82,7 @@ class SassyHash < Sassy
   def make_methods
     @table.each do |k, v|
       define_singleton_method(k) do
-        Sassy.from(v)
+        Fetching.from(v)
       end
     end
   end

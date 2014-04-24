@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe Sassy do
+describe Fetching do
 
   let(:input)       { { one: 1, two: two, ary: ary, object_ary: object_ary } }
   let(:two)         { { "two"=>2 } }
@@ -8,10 +8,10 @@ describe Sassy do
   let(:object_ary)  { [{}, last_object] }
   let(:last_object) { { three: 3 } }
 
-  subject { Sassy(input) }
+  subject { Fetching(input) }
   specify("#one") { expect(subject.one).to eq(1) }
-  specify("#two") { expect(subject.two).to eq(Sassy(two)) }
-  specify("#ary") { expect(subject.ary).to eq(Sassy(ary)) }
+  specify("#two") { expect(subject.two).to eq(Fetching(two)) }
+  specify("#ary") { expect(subject.ary).to eq(Fetching(ary)) }
   specify "objects in arrays" do
     expect(subject.object_ary[1].three).to eq(3)
   end
@@ -33,22 +33,22 @@ describe Sassy do
 
   describe "a bad closure" do
     it "raises the expected error" do
-      expect { Sassy.from_json("{}", :not_a_key) }.to raise_error(NoMethodError)
+      expect { Fetching.from_json("{}", :not_a_key) }.to raise_error(NoMethodError)
     end
   end
 
 end
 
-describe SassyHash do
+describe FetchingHash do
 
   specify "#to_hash" do
     hash = {one: 1, two: 2}
-    sassy_hash = Sassy(hash)
+    sassy_hash = Fetching(hash)
     expect(sassy_hash.to_hash).to eq(hash)
   end
 
-  specify "#to_hash doesn't allow you to break sassy" do
-    sassy_hash = Sassy(one: 1, two: 2)
+  specify "#to_hash doesn't allow you to break fetching" do
+    sassy_hash = Fetching(one: 1, two: 2)
     hash = sassy_hash.to_hash
     hash[:one] = ":)"
     expect(sassy_hash.to_hash[:one]).to eq(1)
@@ -56,22 +56,22 @@ describe SassyHash do
 
   specify "#to_hash does a deep copy" do
     hash = {one: 1, two: {three: 3}}
-    sassy_hash = Sassy(hash)
+    sassy_hash = Fetching(hash)
     expect(sassy_hash.to_hash).to eq(hash)
   end
 
 end
 
-describe SassyArray do
+describe FetchingArray do
 
   specify "#map" do
     ary = [1, 2]
-    sassy_ary = Sassy(ary)
+    sassy_ary = Fetching(ary)
     expect(sassy_ary.map(&:to_s)).to eq(%w[1 2])
   end
 
   specify "Sassiness should go deep" do
-    Sassy([{one: 1}]).each do |element|
+    Fetching([{one: 1}]).each do |element|
       expect(element.one).to eq(1)
     end
   end

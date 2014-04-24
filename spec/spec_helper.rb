@@ -1,4 +1,4 @@
-require "sassy_struct"
+require "fetching"
 require "rspec/autorun"
 require "pathname"
 
