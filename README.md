@@ -16,7 +16,7 @@ Fetching(HTTParty.get(url, query: query)).forms[0].request_form_id
 
 Add this line to your application's Gemfile:
 
-    gem 'fetching', git: 'https://github.com/covermymeds/fetching-gem.git'
+    gem 'fetching'
 
 And then execute:
 
