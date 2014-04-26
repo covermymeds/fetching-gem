@@ -12,6 +12,8 @@ Fetching(HTTParty.get(url, query: query)).forms[0].request_form_id
 # fails loudly if the first `form` doesn't have a `request_form_id` key
 ```
 
+Or, if you prefer to learn from slide decks -- [As presented at RailsConf 2014](http://dapplebeforedawn.github.io/fetching-gem-talk)
+
 ## Installation
 
 Add this line to your application's Gemfile:
