@@ -11,8 +11,9 @@ end
 class Fetching
 
   WHITELIST = %w[ define_singleton_method class object_id
-                  == inspect to_s instance_variables instance_eval
+                  == instance_variables instance_eval
                   instance_variable_get ]
+
   all_methods = instance_methods.map(&:to_s).grep(/\A[^_]/)
   (all_methods - WHITELIST).each(&method(:undef_method))
 
@@ -41,6 +42,14 @@ class Fetching
 
   def hash
     self.class.hash ^ @table.hash
+  end
+
+  def to_s
+    @table.to_s
+  end
+
+  def inspect
+    "#<#{self.class.name}: @table=#{to_s}>"
   end
 
   private
