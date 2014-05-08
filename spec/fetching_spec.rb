@@ -85,4 +85,10 @@ describe FetchingArray do
       expect(element.one).to eq(1)
     end
   end
+
+  specify "#first" do
+    ary = []
+    sassy_ary = Fetching(ary)
+    expect{ sassy_ary.first }.to raise_error(IndexError)
+  end
 end

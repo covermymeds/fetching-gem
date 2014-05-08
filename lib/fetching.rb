@@ -73,6 +73,10 @@ class FetchingArray < Fetching
     end
   end
 
+  def first
+    self[0]
+  end
+
 end
 
 class FetchingHash < Fetching
