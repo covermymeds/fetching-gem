@@ -27,27 +27,26 @@ describe Fetching::FetchingArray do
       end
     end
 
+    specify "#length" do
+      expect(fetching.length).to eq(array.length)
+      expect(fetching.size).to eq(array.size)
+    end
+
     specify "#reverse" do
       reversed = Fetching(array.reverse)
       expect(fetching.reverse).to eq(reversed)
     end
 
     specify "#shuffle" do
-      table = fetching.instance_variable_get(:@table)
-      arg   = {random: 1}
-
-      expect(table).to receive(:shuffle).with(arg)
-      fetching.shuffle(arg)
-    end
-
-    specify "#size" do
-      expect(fetching.size).to eq(array.size)
-      expect(fetching.length).to eq(array.length)
+      seed = 1
+      shuffled = Fetching(array.shuffle(random: Random.new(seed)))
+      expect(fetching.shuffle(random: Random.new(seed))).to eq(shuffled)
     end
 
     specify "#sort" do
-      sorted = Fetching(array.sort {|x, y| y <=> x})
-      expect(fetching.sort {|x, y| y <=> x}).to eq(sorted)
+      sorter = ->(x, y){ y <=> x }
+      sorted = Fetching(array.sort(&sorter))
+      expect(fetching.sort(&sorter)).to eq(sorted)
     end
 
     specify "#sort_by" do
@@ -56,10 +55,17 @@ describe Fetching::FetchingArray do
       expect(fetching.sort_by(&sorter)).to eq(sorted)
     end
 
-    specify "#values_at" do
-      at     = [0, 2]
-      values = Fetching(array.values_at(*at))
-      expect(fetching.values_at(*at)).to eq(values)
+    describe "#values_at" do
+      specify "happy path" do
+        at     = [0, 2]
+        values = Fetching(array.values_at(*at))
+        expect(fetching.values_at(*at)).to eq(values)
+      end
+      specify "out of bounds" do
+        at = 5
+        expected_message = "index #{at} outside of array bounds: -3...3"
+        expect{ fetching.values_at(at) }.to raise_error(IndexError, expected_message)
+      end
     end
 
   end

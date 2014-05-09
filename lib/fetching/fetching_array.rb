@@ -19,6 +19,11 @@ class Fetching
         @table.empty?
       end
 
+      def length
+        @table.length
+      end
+      alias size length
+
       def reverse
         Fetching.from @table.reverse
       end
@@ -26,11 +31,6 @@ class Fetching
       def shuffle *args
         Fetching.from @table.shuffle(*args)
       end
-
-      def size
-        @table.size
-      end
-      alias length size
 
       def sort &block
         Fetching.from @table.sort(&block)
@@ -41,7 +41,7 @@ class Fetching
       end
 
       def values_at *args
-        Fetching.from @table.values_at(*args)
+        Fetching.from(args.map { |i| self[i] })
       end
 
     end
