@@ -1,4 +1,6 @@
 require "json"
+require "fetching/fetching_array"
+require "fetching/fetching_hash"
 
 module Kernel
 
@@ -55,53 +57,6 @@ class Fetching
   private
 
   def no_method key
-  end
-
-end
-
-class FetchingArray < Fetching
-
-  include Enumerable
-
-  def [](index)
-    Fetching.from @table.fetch(index)
-  end
-
-  def each
-    @table.each_index do |i|
-      yield self[i]
-    end
-  end
-
-  def first
-    self[0]
-  end
-
-end
-
-class FetchingHash < Fetching
-
-  def initialize *args
-    super
-    make_methods
-  end
-
-  def to_hash
-    @table.dup
-  end
-
-  private
-
-  def make_methods
-    @table.each do |k, v|
-      define_singleton_method(k) do
-        Fetching.from(v)
-      end
-    end
-  end
-
-  def method_missing key, *args, &block
-    fail NoMethodError, "#{key} not found\nyou have:\n#{@table.inspect}"
   end
 
 end

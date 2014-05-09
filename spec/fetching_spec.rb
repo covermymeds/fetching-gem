@@ -43,52 +43,8 @@ describe Fetching do
   end
 
   it "has a nice #inspect" do
-    nice_inspect = "#<FetchingHash: @table={:one=>1, :two=>{\"two\"=>2}, :ary=>[1, 2], :object_ary=>[{}, {:three=>3}]}>"
+    nice_inspect = "#<Fetching::FetchingHash: @table={:one=>1, :two=>{\"two\"=>2}, :ary=>[1, 2], :object_ary=>[{}, {:three=>3}]}>"
     expect(subject.inspect).to eq(nice_inspect)
   end
 
-end
-
-describe FetchingHash do
-
-  specify "#to_hash" do
-    hash = {one: 1, two: 2}
-    sassy_hash = Fetching(hash)
-    expect(sassy_hash.to_hash).to eq(hash)
-  end
-
-  specify "#to_hash doesn't allow you to break fetching" do
-    sassy_hash = Fetching(one: 1, two: 2)
-    hash = sassy_hash.to_hash
-    hash[:one] = ":)"
-    expect(sassy_hash.to_hash[:one]).to eq(1)
-  end
-
-  specify "#to_hash does a deep copy" do
-    hash = {one: 1, two: {three: 3}}
-    sassy_hash = Fetching(hash)
-    expect(sassy_hash.to_hash).to eq(hash)
-  end
-
-end
-
-describe FetchingArray do
-
-  specify "#map" do
-    ary = [1, 2]
-    sassy_ary = Fetching(ary)
-    expect(sassy_ary.map(&:to_s)).to eq(%w[1 2])
-  end
-
-  specify "Sassiness should go deep" do
-    Fetching([{one: 1}]).each do |element|
-      expect(element.one).to eq(1)
-    end
-  end
-
-  specify "#first" do
-    ary = []
-    sassy_ary = Fetching(ary)
-    expect{ sassy_ary.first }.to raise_error(IndexError)
-  end
 end
