@@ -54,9 +54,4 @@ class Fetching
     "#<#{self.class.name}: @table=#{to_s}>"
   end
 
-  private
-
-  def no_method key
-  end
-
 end
