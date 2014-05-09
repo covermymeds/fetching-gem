@@ -14,6 +14,12 @@ describe Fetching::FetchingArray do
     end
   end
 
+  specify "#first" do
+    ary = []
+    sassy_ary = Fetching(ary)
+    expect{ sassy_ary.first }.to raise_error(IndexError)
+  end
+
   describe "array methods" do
     let(:array)    { [1, 2, 3] }
     let(:fetching) { Fetching(array) }

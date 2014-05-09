@@ -13,6 +13,10 @@ class Fetching
       end
     end
 
+    def first
+      self[0]
+    end
+
     module ArrayMethods
 
       def empty?
