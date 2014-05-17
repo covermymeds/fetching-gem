@@ -29,8 +29,8 @@ class Fetching
     value
   end
 
-  def self.from_json json, closure
-    from(JSON.parse json).__send__ closure
+  def self.from_json json
+    from(JSON.parse json)
   end
 
   def initialize table
