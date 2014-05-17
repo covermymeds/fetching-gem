@@ -26,7 +26,7 @@ class Fetching
       def length
         @table.length
       end
-      alias size length
+      alias_method :size, :length
 
       def reverse
         Fetching.from @table.reverse

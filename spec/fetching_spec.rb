@@ -3,7 +3,7 @@ require "spec_helper"
 describe Fetching do
 
   let(:input)       { { one: 1, two: two, ary: ary, object_ary: object_ary } }
-  let(:two)         { { "two"=>2 } }
+  let(:two)         { { "two" => 2 } }
   let(:ary)         { [1, 2] }
   let(:object_ary)  { [{}, last_object] }
   let(:last_object) { { three: 3 } }
@@ -18,16 +18,20 @@ describe Fetching do
 
   describe "an unknown hash key" do
     it "raises NoMethodError" do
-      expected_message = "not_a_key not found\nyou have:\n{:one=>1, :two=>{\"two\"=>2}, :ary=>[1, 2], :object_ary=>[{}, {:three=>3}]}"
+      expected_message = <<-EOM.gsub(/^ +/, "").strip
+        not_a_key not found
+        you have:
+        {:one=>1, :two=>{\"two\"=>2}, :ary=>[1, 2], :object_ary=>[{}, {:three=>3}]}
+      EOM
 
-      expect{ subject.not_a_key }.to raise_error(NoMethodError, expected_message)
+      expect { subject.not_a_key }.to raise_error(NoMethodError, expected_message)
     end
   end
 
   describe "an unknown array index" do
     it "raises NoMethodError" do
       expected_message = "index 3 outside of array bounds: -2...2"
-      expect{ subject.ary[ary.size + 1] }.to raise_error(IndexError, expected_message)
+      expect { subject.ary[ary.size + 1] }.to raise_error(IndexError, expected_message)
     end
   end
 
@@ -43,7 +47,8 @@ describe Fetching do
   end
 
   it "has a nice #inspect" do
-    nice_inspect = "#<Fetching::FetchingHash: @table={:one=>1, :two=>{\"two\"=>2}, :ary=>[1, 2], :object_ary=>[{}, {:three=>3}]}>"
+    table = "{:one=>1, :two=>{\"two\"=>2}, :ary=>[1, 2], :object_ary=>[{}, {:three=>3}]}"
+    nice_inspect = "#<Fetching::FetchingHash: @table=#{table}>"
     expect(subject.inspect).to eq(nice_inspect)
   end
 

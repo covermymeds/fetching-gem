@@ -1,14 +1,14 @@
 # coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
+lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'fetching/version'
+require "fetching/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "fetching"
   spec.version       = Fetching::VERSION
   spec.authors       = ["Michael Gee", "Mark Lorenz"]
   spec.email         = ["mgee@covermymeds.com", "mlorenz@covermymeds.com"]
-  spec.description   = %q{More sass in more structs.}
+  spec.description   = %q(More sass in more structs.)
 
   spec.summary       = <<-HEREDOC
 This gem is a work in progress.  The implementation code is not what's

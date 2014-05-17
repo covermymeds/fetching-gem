@@ -1,0 +1,37 @@
+AllCops:
+  Include:
+    - Gemfile
+    - Rakefile
+
+Documentation:
+  Enabled: false
+
+Encoding:
+  Enabled: false
+
+EmptyLinesAroundBody:
+  Enabled: false
+
+LineLength:
+  Max: 100
+
+MethodDefParentheses:
+  Enabled: false
+
+NumericLiterals:
+  Enabled: false
+
+RegexpLiteral:
+  MaxSlashes: 0
+  Exclude:
+    - Guardfile
+
+SpecialGlobalVars:
+  Exclude:
+    - fetching.gemspec
+
+StringLiterals:
+  EnforcedStyle: double_quotes
+
+TrailingComma:
+  EnforcedStyleForMultiline: comma

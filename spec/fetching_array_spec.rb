@@ -5,11 +5,11 @@ describe Fetching::FetchingArray do
   specify "#map" do
     ary = [1, 2]
     fetching_ary = Fetching(ary)
-    expect(fetching_ary.map(&:to_s)).to eq(%w[1 2])
+    expect(fetching_ary.map(&:to_s)).to eq(%w(1 2))
   end
 
   specify "Fetching should go deep" do
-    Fetching([{one: 1}]).each do |element|
+    Fetching([{ one: 1 }]).each do |element|
       expect(element.one).to eq(1)
     end
   end
@@ -17,7 +17,7 @@ describe Fetching::FetchingArray do
   specify "#first" do
     ary = []
     sassy_ary = Fetching(ary)
-    expect{ sassy_ary.first }.to raise_error(IndexError)
+    expect { sassy_ary.first }.to raise_error(IndexError)
   end
 
   describe "array methods" do
@@ -25,11 +25,11 @@ describe Fetching::FetchingArray do
     let(:fetching) { Fetching(array) }
 
     describe "#empty?" do
-      it("should be false"){ expect(fetching.empty?).to be_false }
+      it("should be false") { expect(fetching.empty?).to be_false }
 
       context "when empty" do
         let(:array) { [] }
-        it("should be true"){ expect(fetching.empty?).to be_true }
+        it("should be true") { expect(fetching.empty?).to be_true }
       end
     end
 
@@ -50,13 +50,13 @@ describe Fetching::FetchingArray do
     end
 
     specify "#sort" do
-      sorter = ->(x, y){ y <=> x }
+      sorter = ->(x, y) { y <=> x }
       sorted = Fetching(array.sort(&sorter))
       expect(fetching.sort(&sorter)).to eq(sorted)
     end
 
     specify "#sort_by" do
-      sorter = ->(i){ 1/i.to_f }
+      sorter = ->(i) { 1.0 / i }
       sorted = Fetching(array.sort_by(&sorter))
       expect(fetching.sort_by(&sorter)).to eq(sorted)
     end
@@ -70,7 +70,7 @@ describe Fetching::FetchingArray do
       specify "out of bounds" do
         at = 5
         expected_message = "index #{at} outside of array bounds: -3...3"
-        expect{ fetching.values_at(at) }.to raise_error(IndexError, expected_message)
+        expect { fetching.values_at(at) }.to raise_error(IndexError, expected_message)
       end
     end
 
