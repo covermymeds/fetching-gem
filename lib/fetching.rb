@@ -13,8 +13,10 @@ end
 class Fetching
 
   WHITELIST = %w(
-    define_singleton_method class object_id ==
-    instance_variables instance_eval instance_variable_get
+    class object_id == equal?
+    define_singleton_method instance_eval
+    respond_to?
+    instance_variables instance_variable_get
   )
 
   all_methods = instance_methods.map(&:to_s).grep(/\A[^_]/)
@@ -22,6 +24,8 @@ class Fetching
 
   def self.from(value)
     case value
+    when ->(v) { v.respond_to? :to_fetching }
+      value.to_fetching
     when ->(v) { v.respond_to? :to_ary }
       FetchingArray.new(value.to_ary)
     when ->(v) { v.respond_to? :to_hash }
@@ -47,12 +51,22 @@ class Fetching
     self.class.hash ^ @table.hash
   end
 
+  def to_fetching
+    self
+  end
+
   def to_s
     @table.to_s
   end
 
   def inspect
     "#<#{self.class.name}: @table=#{@table}>"
+  end
+
+  private
+
+  def respond_to_missing? _method_name, _include_private = false
+    false
   end
 
 end
