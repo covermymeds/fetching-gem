@@ -23,16 +23,10 @@ class Fetching
   (all_methods - WHITELIST).each(&method(:undef_method))
 
   def self.from(value)
-    case value
-    when ->(v) { v.respond_to? :to_fetching }
-      value.to_fetching
-    when ->(v) { v.respond_to? :to_ary }
-      FetchingArray.new(value.to_ary)
-    when ->(v) { v.respond_to? :to_hash }
-      FetchingHash.new(value.to_hash)
-    else
-      value
-    end
+    return value.to_fetching               if value.respond_to? :to_fetching
+    return FetchingArray.new(value.to_ary) if value.respond_to? :to_ary
+    return FetchingHash.new(value.to_hash) if value.respond_to? :to_hash
+    value
   end
 
   def self.from_json json, closure
