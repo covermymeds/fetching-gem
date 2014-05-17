@@ -2,6 +2,15 @@ require "spec_helper"
 
 describe Fetching::FetchingArray do
 
+  specify "a Fetching object as a value" do
+    ary = Fetching([1, 2])
+    hsh = Fetching(one: 1)
+    [ary, hsh].each do |obj|
+      fetching_ary = Fetching [obj]
+      expect(fetching_ary.first).to equal(obj)
+    end
+  end
+
   specify "#map" do
     ary = [1, 2]
     fetching_ary = Fetching(ary)
