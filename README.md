@@ -1,6 +1,6 @@
 # Fetching
 
-Turn deeply nested hashes and arrays (like an API response) into an whiney object with method syntax.
+Turn deeply nested hashes and arrays (like an API response) into a whiney object with method syntax.
 
 ## Usage
 
