@@ -28,7 +28,7 @@ class Fetching
     def make_methods
       @table.each do |k, v|
         define_singleton_method(k) do
-          Fetching.from(v, secure = false)
+          Fetching.from(v)
         end
       end
     end
@@ -39,7 +39,7 @@ class Fetching
 
     def value_for(key)
       value = @table[key.to_s] || @table[key.to_sym]
-      Fetching.from(value, secure = false)
+      Fetching.from(value)
     end
   end
 end

@@ -23,7 +23,7 @@ class Fetching
   all_methods = instance_methods.map(&:to_s).grep(/\A[^_]/)
   (all_methods - WHITELIST).each(&method(:undef_method))
 
-  def self.from(value, secure = true)
+  def self.from(value)
     return value.to_fetching                if value.respond_to? :to_fetching
     return FetchingArray.new(value.to_ary)  if value.respond_to? :to_ary
     return @@hash_class.new(value.to_hash)  if value.respond_to? :to_hash
