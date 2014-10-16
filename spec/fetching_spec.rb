@@ -52,4 +52,23 @@ describe Fetching do
     expect(described_class.from_json(json)).to eq(expected)
   end
 
+  describe 'Fetching' do
+    it 'uses the FetchingHash class' do
+      expect(subject.class).to eq(Fetching::FetchingHash)
+    end
+  end
+
+  describe '::use_insecure_hash!' do
+    it 'uses the InsecureFetchingHash' do
+      Fetching.use_insecure_hash!
+      expect(Fetching(input).class).to eq(Fetching::InsecureFetchingHash)
+    end
+  end
+
+  describe '::secure!' do
+    it 'uses the (default) FetchingHash' do
+      Fetching.secure!
+      expect(Fetching(input).class).to eq(Fetching::FetchingHash)
+    end
+  end
 end
