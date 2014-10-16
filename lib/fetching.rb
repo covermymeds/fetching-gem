@@ -10,7 +10,7 @@ module Kernel
 end
 
 class Fetching
-  @@hash_class = FetchingHash
+  @@hash_class = FetchingHash   # one copy for ALL classes
 
   WHITELIST = %w(
     class object_id == equal?

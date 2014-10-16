@@ -10,6 +10,7 @@ class Fetching
       super
     end
 
+    # I also want true if compared to a hash with identical keys/values
     def ===(other)
       self.to_hash == other.to_hash
     end
@@ -24,14 +25,6 @@ class Fetching
     end
 
     private
-
-    def make_methods
-      @table.each do |k, v|
-        define_singleton_method(k) do
-          Fetching.from(v)
-        end
-      end
-    end
 
     def respond_to_missing?(method_name, _include_private = false)
       !value_for(method_name).nil?
