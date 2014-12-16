@@ -17,6 +17,7 @@ class Fetching
     define_singleton_method instance_eval
     respond_to?
     instance_variables instance_variable_get
+    nil?
   )
 
   all_methods = instance_methods.map(&:to_s).grep(/\A[^_]/)

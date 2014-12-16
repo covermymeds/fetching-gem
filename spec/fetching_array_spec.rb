@@ -34,11 +34,11 @@ describe Fetching::FetchingArray do
     let(:fetching) { Fetching(array) }
 
     describe "#empty?" do
-      it("should be false") { expect(fetching.empty?).to be_false }
+      it("should be false") { expect(fetching.empty?).to be_falsy }
 
       context "when empty" do
         let(:array) { [] }
-        it("should be true") { expect(fetching.empty?).to be_true }
+        it("should be true") { expect(fetching.empty?).to be_truthy }
       end
     end
 
