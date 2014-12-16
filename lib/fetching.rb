@@ -57,6 +57,10 @@ class Fetching
     "#<#{self.class.name}: @table=#{@table}>"
   end
 
+  def nil?
+    @table.nil?
+  end
+
   private
 
   def respond_to_missing? _method_name, _include_private = false

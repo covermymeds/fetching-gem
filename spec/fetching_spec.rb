@@ -52,4 +52,32 @@ describe Fetching do
     expect(described_class.from_json(json)).to eq(expected)
   end
 
+  # some of these specs may seem redundant, but several cases
+  #+ generated NoMethodErrors previously so I wanted to make sure
+  #+ all use cases work now
+  describe '#nil?' do
+    it 'is true if the object is nil' do
+      expect(Fetching(nil)).to be_nil
+    end
+
+    it 'is true if the value of a key in a FetchingHash is nil' do
+      expect(Fetching(value: nil).value).to be_nil
+    end
+
+    it 'is true if the value of an index in a FetchingArray is nil' do
+      expect(Fetching(['a', nil, 'b'])[1]).to be_nil
+    end
+
+    it 'is false if the object has a value' do
+      expect(Fetching({})).not_to be_nil
+    end
+
+    it 'is false if the value of a key in a FetchingHash is non-nil' do
+      expect(Fetching(value: 'not nil!').value).not_to be_nil
+    end
+
+    it 'is false if the value of an index in a FetchingArray is non-nil' do
+      expect(Fetching(['a', 1, 'b'])[1]).not_to be_nil
+    end
+  end
 end
