@@ -78,7 +78,7 @@ describe Fetching::FetchingArray do
       end
       specify "out of bounds" do
         at = 5
-        expected_message = "index #{at} outside of array bounds: -3...3"
+        expected_message = /\Aindex #{at} out/
         expect { fetching.values_at(at) }.to raise_error(IndexError, expected_message)
       end
     end

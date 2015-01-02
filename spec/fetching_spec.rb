@@ -30,7 +30,7 @@ describe Fetching do
 
   describe "an unknown array index" do
     it "raises NoMethodError" do
-      expected_message = "index 3 outside of array bounds: -2...2"
+      expected_message = /\Aindex 3 out/
       expect { subject.ary[ary.size + 1] }.to raise_error(IndexError, expected_message)
     end
   end
