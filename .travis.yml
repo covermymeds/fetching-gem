@@ -1,5 +1,7 @@
 language: ruby
-script: bundle exec rspec
+script:
+  - bundle exec rspec
+  - bundle exec rubocop --display-cop-names
 sudo: false
 rvm:
   - 1.9.3

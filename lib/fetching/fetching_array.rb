@@ -32,19 +32,19 @@ class Fetching
         Fetching.from @table.reverse
       end
 
-      def shuffle *args
+      def shuffle(*args)
         Fetching.from @table.shuffle(*args)
       end
 
-      def sort &block
+      def sort(&block)
         Fetching.from @table.sort(&block)
       end
 
-      def sort_by &block
+      def sort_by(&block)
         Fetching.from @table.sort_by(&block)
       end
 
-      def values_at *args
+      def values_at(*args)
         Fetching.from(args.map { |i| self[i] })
       end
 

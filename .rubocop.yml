@@ -1,3 +1,5 @@
+require: rubocop-rspec
+
 AllCops:
   Include:
     - Gemfile
@@ -6,32 +8,18 @@ AllCops:
 Documentation:
   Enabled: false
 
-Encoding:
+Style/EmptyLinesAroundClassBody:
   Enabled: false
 
-EmptyLinesAroundBody:
+Style/EmptyLinesAroundModuleBody:
   Enabled: false
 
-LineLength:
-  Max: 100
-
-MethodDefParentheses:
+Style/EmptyLinesAroundBlockBody:
   Enabled: false
-
-NumericLiterals:
-  Enabled: false
-
-RegexpLiteral:
-  MaxSlashes: 0
-  Exclude:
-    - Guardfile
 
 SpecialGlobalVars:
   Exclude:
     - fetching.gemspec
-
-StringLiterals:
-  EnforcedStyle: double_quotes
 
 TrailingComma:
   EnforcedStyleForMultiline: comma

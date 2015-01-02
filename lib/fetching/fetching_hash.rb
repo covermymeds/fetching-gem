@@ -1,7 +1,7 @@
 class Fetching
   class FetchingHash < Fetching
 
-    def initialize *args
+    def initialize(*args)
       super
       make_methods
     end
@@ -20,7 +20,7 @@ class Fetching
       end
     end
 
-    def method_missing key, *_args, &_block
+    def method_missing(key, *_args, &_block)
       fail NoMethodError, "#{key} not found\nyou have:\n#{@table.inspect}"
     end
 
