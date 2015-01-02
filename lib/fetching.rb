@@ -1,6 +1,6 @@
-require "json"
-require "fetching/fetching_array"
-require "fetching/fetching_hash"
+require 'json'
+require 'fetching/fetching_array'
+require 'fetching/fetching_hash'
 
 module Kernel
 
@@ -29,11 +29,11 @@ class Fetching
     value
   end
 
-  def self.from_json json
+  def self.from_json(json)
     from(JSON.parse json)
   end
 
-  def initialize table
+  def initialize(table)
     @table = table
   end
 
@@ -59,7 +59,7 @@ class Fetching
 
   private
 
-  def respond_to_missing? _method_name, _include_private = false
+  def respond_to_missing?(_method_name, _include_private = false)
     false
   end
 
