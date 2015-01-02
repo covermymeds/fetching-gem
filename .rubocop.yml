@@ -16,3 +16,6 @@ Style/EmptyLinesAroundModuleBody:
 
 Style/EmptyLinesAroundBlockBody:
   Enabled: false
+
+Metrics/LineLength:
+  Max: 100
