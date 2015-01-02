@@ -3,7 +3,9 @@ require: rubocop-rspec
 AllCops:
   Include:
     - Gemfile
+    - Guardfile
     - Rakefile
+    - fetching.gemspec
 
 Documentation:
   Enabled: false
@@ -19,3 +21,11 @@ Style/EmptyLinesAroundBlockBody:
 
 Metrics/LineLength:
   Max: 100
+
+RegexpLiteral:
+  MaxSlashes: 0
+  Exclude:
+    - Guardfile
+
+TrailingComma:
+  EnforcedStyleForMultiline: comma
