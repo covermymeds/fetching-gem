@@ -15,7 +15,7 @@ RSpec.describe Fetching::FetchingArray do
     expect(fetching_ary.map(&:to_s)).to eq(%w(1 2))
   end
 
-  specify 'Fetching should go deep' do
+  specify 'Fetching goes deep' do
     Fetching([{ one: 1 }]).each do |element|
       expect(element.one).to eq(1)
     end
@@ -32,11 +32,11 @@ RSpec.describe Fetching::FetchingArray do
     let(:fetching) { Fetching(array) }
 
     describe '#empty?' do
-      it('should be false') { expect(fetching.empty?).to be_falsy }
+      it('is false') { expect(fetching.empty?).to be_falsy }
 
       context 'when empty' do
         let(:array) { [] }
-        it('should be true') { expect(fetching.empty?).to be_truthy }
+        it('is true') { expect(fetching.empty?).to be_truthy }
       end
     end
 
