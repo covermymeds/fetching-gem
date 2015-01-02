@@ -16,10 +16,3 @@ Style/EmptyLinesAroundModuleBody:
 
 Style/EmptyLinesAroundBlockBody:
   Enabled: false
-
-SpecialGlobalVars:
-  Exclude:
-    - fetching.gemspec
-
-TrailingComma:
-  EnforcedStyleForMultiline: comma
