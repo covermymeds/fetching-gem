@@ -14,9 +14,8 @@ class Fetching
 
   WHITELIST = %w(
     class object_id == equal?
-    define_singleton_method instance_eval
+    define_singleton_method
     respond_to?
-    instance_variables instance_variable_get
     nil?
   )
 
