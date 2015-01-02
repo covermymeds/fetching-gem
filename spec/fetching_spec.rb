@@ -1,6 +1,4 @@
-require "spec_helper"
-
-describe Fetching do
+RSpec.describe Fetching do
 
   let(:input)       { { one: 1, two: two, ary: ary, object_ary: object_ary } }
   let(:two)         { { "two" => 2 } }
