@@ -1,6 +1,4 @@
-require "spec_helper"
-
-describe Fetching::FetchingHash do
+RSpec.describe Fetching::FetchingHash do
 
   specify "a Fetching object as a value" do
     ary = Fetching([1, 2])
