@@ -1,4 +1,4 @@
-# Fetching
+# Fetching [![Build Status](https://travis-ci.org/covermymeds/fetching-gem.svg?branch=master)](https://travis-ci.org/covermymeds/fetching-gem)
 
 Turn deeply nested hashes and arrays (like an API response) into a whiney object with method syntax.
 
