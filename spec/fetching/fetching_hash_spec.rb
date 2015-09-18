@@ -1,5 +1,10 @@
 RSpec.describe Fetching::FetchingHash do
 
+  specify 'using a block as the default value' do
+    hash = Fetching(one: 1)
+    expect(hash.two { 2 }).to eq(2)
+  end
+
   specify 'a Fetching object as a value' do
     ary = Fetching([1, 2])
     hsh = Fetching(one: 1)

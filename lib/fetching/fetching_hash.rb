@@ -20,8 +20,12 @@ class Fetching
       end
     end
 
-    def method_missing(key, *_args, &_block)
-      fail NoMethodError, "#{key} not found\nyou have:\n#{@table.inspect}"
+    def method_missing(key, *_args)
+      if block_given?
+        yield
+      else
+        fail NoMethodError, "#{key} not found\nyou have:\n#{@table.inspect}"
+      end
     end
 
   end
