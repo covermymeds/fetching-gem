@@ -21,10 +21,20 @@ RSpec.describe Fetching::FetchingArray do
     end
   end
 
-  specify '#first' do
-    ary = []
-    sassy_ary = Fetching(ary)
-    expect { sassy_ary.first }.to raise_error(IndexError)
+  describe '#first' do
+    it 'returns the first element in the array' do
+      ary = []
+      sassy_ary = Fetching(ary)
+      expect { sassy_ary.first }.to raise_error(IndexError)
+    end
+
+    context 'when passed an amount to fetch the first of' do
+      it 'returns the first n elements' do
+        ary = [1, 2, 3]
+        sassy_ary = Fetching(ary)
+        expect(sassy_ary.first(2)).to eq([1, 2])
+      end
+    end
   end
 
   describe 'array methods' do
