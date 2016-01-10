@@ -13,8 +13,10 @@ class Fetching
       end
     end
 
-    def first
-      self[0]
+    def first(num = 0)
+      return self[0] if num.zero?
+
+      num.times.map { |i| self[i] }
     end
 
     module ArrayMethods
