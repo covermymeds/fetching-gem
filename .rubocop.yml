@@ -1,11 +1,10 @@
-require: rubocop-rspec
-
 AllCops:
   Include:
     - Gemfile
     - Guardfile
     - Rakefile
     - fetching.gemspec
+    - rubocop-rspec
 
 Style/Documentation:
   Enabled: false

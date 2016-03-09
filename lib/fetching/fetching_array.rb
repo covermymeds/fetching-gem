@@ -3,8 +3,12 @@ class Fetching
 
     include Enumerable
 
-    def [](index)
-      Fetching.from @table.fetch(index)
+    def [](*args)
+      if args.length == 1 && args.first.is_a?(Integer)
+        Fetching.from @table.fetch(args.first)
+      else
+        values_at(*args)
+      end
     end
 
     def each
@@ -47,9 +51,35 @@ class Fetching
       end
 
       def values_at(*args)
-        Fetching.from(args.map { |i| self[i] })
+        results = args.map { |arg| result_for_argument(arg) }.flatten
+
+        Fetching.from(results)
       end
 
+      private
+
+      def result_for_argument(argument)
+        case argument
+        when Integer
+          values_at_integer(argument)
+        when Array
+          values_at_array(argument)
+        when Range
+          values_at_range(argument)
+        end
+      end
+
+      def values_at_integer(integer)
+        self[integer]
+      end
+
+      def values_at_array(array)
+        array.map { |a| values_at_integer(a) }
+      end
+
+      def values_at_range(range)
+        values_at_array(range.to_a)
+      end
     end
 
     include ArrayMethods
