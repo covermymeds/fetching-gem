@@ -21,7 +21,7 @@ class Fetching
     end
 
     def method_missing(key, *_args, &_block)
-      fail NoMethodError, "#{key} not found\nyou have:\n#{@table.inspect}"
+      raise NoMethodError, "#{key} not found\nyou have:\n#{@table.inspect}"
     end
 
   end

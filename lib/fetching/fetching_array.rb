@@ -16,7 +16,7 @@ class Fetching
     def first(num = 0)
       return self[0] if num.zero?
 
-      num.times.map { |i| self[i] }
+      Array.new(num) { |i| self[i] }
     end
 
     module ArrayMethods
@@ -28,7 +28,7 @@ class Fetching
       def length
         @table.length
       end
-      alias_method :size, :length
+      alias size length
 
       def reverse
         Fetching.from @table.reverse
