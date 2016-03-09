@@ -34,12 +34,12 @@ RSpec.describe Fetching do
   end
 
   it 'has a nice #to_s' do
-    nice_to_s = "{:one=>1, :two=>{\"two\"=>2}, :ary=>[1, 2], :object_ary=>[{}, {:three=>3}]}"
+    nice_to_s = '{:one=>1, :two=>{"two"=>2}, :ary=>[1, 2], :object_ary=>[{}, {:three=>3}]}'
     expect(subject.to_s).to eq(nice_to_s)
   end
 
   it 'has a nice #inspect' do
-    table = "{:one=>1, :two=>{\"two\"=>2}, :ary=>[1, 2], :object_ary=>[{}, {:three=>3}]}"
+    table = '{:one=>1, :two=>{"two"=>2}, :ary=>[1, 2], :object_ary=>[{}, {:three=>3}]}'
     nice_inspect = "#<Fetching::FetchingHash: @table=#{table}>"
     expect(subject.inspect).to eq(nice_inspect)
   end

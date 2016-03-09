@@ -28,10 +28,10 @@ HEREDOC
   spec.add_development_dependency 'bundler', '~> 1.3'
   spec.add_development_dependency 'rake'
   spec.add_development_dependency 'rspec', '~> 3.1.0'
-  spec.add_development_dependency 'rubocop'
+  spec.add_development_dependency 'rubocop', '~> 0.37.0'
   spec.add_development_dependency 'rubocop-rspec'
   unless ENV['CI']
-    spec.add_development_dependency 'pry-plus'
+    spec.add_development_dependency 'pry'
     spec.add_development_dependency 'guard-rspec'
     spec.add_development_dependency 'guard-rubocop'
   end

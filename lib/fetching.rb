@@ -17,7 +17,7 @@ class Fetching
     define_singleton_method singleton_class
     respond_to?
     nil?
-  )
+  ).freeze
 
   all_methods = instance_methods.map(&:to_s).grep(/\A[^_]/)
   (all_methods - WHITELIST).each(&method(:undef_method))
@@ -30,7 +30,7 @@ class Fetching
   end
 
   def self.from_json(json)
-    from(JSON.parse json)
+    from JSON.parse(json)
   end
 
   def initialize(table)

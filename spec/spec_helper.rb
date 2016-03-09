@@ -10,7 +10,7 @@ RSpec.configure do |config|
   end
 
   if ENV['CI']
-    config.before(:example, :focus) { fail 'Should not commit focused specs' }
+    config.before(:example, :focus) { raise 'Should not commit focused specs' }
   else
     config.filter_run :focus
     config.run_all_when_everything_filtered = true

@@ -7,7 +7,7 @@ AllCops:
     - Rakefile
     - fetching.gemspec
 
-Documentation:
+Style/Documentation:
   Enabled: false
 
 Style/EmptyLinesAroundClassBody:
@@ -22,10 +22,9 @@ Style/EmptyLinesAroundBlockBody:
 Metrics/LineLength:
   Max: 100
 
-RegexpLiteral:
-  MaxSlashes: 0
+Style/RegexpLiteral:
   Exclude:
     - Guardfile
 
-TrailingComma:
+Style/TrailingCommaInLiteral:
   EnforcedStyleForMultiline: comma
