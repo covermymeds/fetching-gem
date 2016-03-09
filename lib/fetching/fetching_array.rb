@@ -51,21 +51,23 @@ class Fetching
       end
 
       def values_at(*args)
-        result = args.map do |arg|
-          case arg
-          when Integer
-            values_at_integer(arg)
-          when Array
-            values_at_array(arg)
-          when Range
-            values_at_range(arg)
-          end
-        end.flatten
+        results = args.map { |arg| result_for_argument(arg) }.flatten
 
-        Fetching.from(result)
+        Fetching.from(results)
       end
 
       private
+
+      def result_for_argument(argument)
+        case argument
+        when Integer
+          values_at_integer(argument)
+        when Array
+          values_at_array(argument)
+        when Range
+          values_at_range(argument)
+        end
+      end
 
       def values_at_integer(integer)
         self[integer]

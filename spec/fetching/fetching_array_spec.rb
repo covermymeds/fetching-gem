@@ -148,13 +148,12 @@ RSpec.describe Fetching::FetchingArray do
 
         it 'correctly throws when range exceeds array' do
           range = (0..5)
-          values = Fetching(array.values_at(range))
           expect { fetching.values_at(range) }.to raise_error(IndexError)
         end
       end
 
       context 'with multiple ranges' do
-        let(:array)    { [1, 2, 3, 4, 5] }
+        let(:array) { [1, 2, 3, 4, 5] }
 
         it 'returns the proper values' do
           range_1 = (0..2)
@@ -167,7 +166,6 @@ RSpec.describe Fetching::FetchingArray do
         it 'correctly throws when range exceeds array' do
           range_1 = (0..2)
           range_2 = (2..7)
-          values = Fetching(array.values_at(range_1, range_2))
           expect { fetching.values_at(range_1, range_2) }.to raise_error(IndexError)
         end
       end

@@ -1,11 +1,10 @@
-require: rubocop-rspec
-
 AllCops:
   Include:
     - Gemfile
     - Guardfile
     - Rakefile
     - fetching.gemspec
+    - rubocop-rspec
 
 Style/Documentation:
   Enabled: false
@@ -22,9 +21,18 @@ Style/EmptyLinesAroundBlockBody:
 Metrics/LineLength:
   Max: 100
 
+<<<<<<< HEAD
 Style/RegexpLiteral:
+=======
+RegexpLiteral:
+>>>>>>> Update rubocop syntax for new version
   Exclude:
     - Guardfile
 
 Style/TrailingCommaInLiteral:
+<<<<<<< HEAD
+=======
+  EnforcedStyleForMultiline: comma
+Style/TrailingCommaInArguments:
+>>>>>>> Update rubocop syntax for new version
   EnforcedStyleForMultiline: comma
