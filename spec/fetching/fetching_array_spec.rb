@@ -37,6 +37,54 @@ RSpec.describe Fetching::FetchingArray do
     end
   end
 
+  describe '#[]' do
+    let(:array)    { [1, 2, 3] }
+    let(:fetching) { Fetching(array) }
+
+    it 'returns the specified index' do
+      expect(fetching[0]).to eq(1)
+      expect(fetching[1]).to eq(2)
+      expect(fetching[2]).to eq(3)
+    end
+
+    it 'throws an error on an invalid index' do
+      expect { fetching[5] }.to raise_error(IndexError)
+    end
+
+    context 'with multiple values' do
+      it 'returns a fetching array of the results' do
+        expected = Fetching([1, 2])
+        expect(fetching[0, 1]).to eq(expected)
+      end
+
+      it 'raises error on invalid index' do
+        expect { fetching[0, 5] }.to raise_error(IndexError)
+      end
+    end
+
+    context 'with a Range' do
+      it 'returns a fetching array of the results' do
+        expected = Fetching([1, 2])
+        expect(fetching[0..1]).to eq(expected)
+      end
+
+      it 'raises error on invalid index' do
+        expect { fetching[0..5] }.to raise_error(IndexError)
+      end
+    end
+
+    context 'with multiple ranges' do
+      it 'returns a fetching array of the results' do
+        expected = Fetching([1, 2, 3, 3])
+        expect(fetching[0..2, 2..2]).to eq(expected)
+      end
+
+      it 'raises error on invalid index' do
+        expect { fetching[0..1, 5..5] }.to raise_error(IndexError)
+      end
+    end
+  end
+
   describe 'array methods' do
     let(:array)    { [1, 2, 3] }
     let(:fetching) { Fetching(array) }
@@ -84,13 +132,45 @@ RSpec.describe Fetching::FetchingArray do
         values = Fetching(array.values_at(*at))
         expect(fetching.values_at(*at)).to eq(values)
       end
+
       specify 'out of bounds' do
         at = 5
         expected_message = /\Aindex #{at} out/
         expect { fetching.values_at(at) }.to raise_error(IndexError, expected_message)
       end
+
+      context 'with a range' do
+        it 'returns the expected values' do
+          range = (0..2)
+          values = Fetching(array.values_at(range))
+          expect(fetching.values_at(range)).to eq(values)
+        end
+
+        it 'correctly throws when range exceeds array' do
+          range = (0..5)
+          values = Fetching(array.values_at(range))
+          expect { fetching.values_at(range) }.to raise_error(IndexError)
+        end
+      end
+
+      context 'with multiple ranges' do
+        let(:array)    { [1, 2, 3, 4, 5] }
+
+        it 'returns the proper values' do
+          range_1 = (0..2)
+          range_2 = (2..4)
+          expected = Fetching([1, 2, 3, 3, 4, 5])
+          values = Fetching(array.values_at(range_1, range_2))
+          expect(values).to eq(expected)
+        end
+
+        it 'correctly throws when range exceeds array' do
+          range_1 = (0..2)
+          range_2 = (2..7)
+          values = Fetching(array.values_at(range_1, range_2))
+          expect { fetching.values_at(range_1, range_2) }.to raise_error(IndexError)
+        end
+      end
     end
-
   end
-
 end
