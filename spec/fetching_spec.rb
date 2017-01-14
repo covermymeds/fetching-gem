@@ -19,7 +19,7 @@ RSpec.describe Fetching do
       expected_message = <<-EOM.gsub(/^ +/, '').strip
         not_a_key not found
         you have:
-        {:one=>1, :two=>{\"two\"=>2}, :ary=>[1, 2], :object_ary=>[{}, {:three=>3}]}
+        one, two, ary, object_ary
       EOM
 
       expect { subject.not_a_key }.to raise_error(NoMethodError, expected_message)
