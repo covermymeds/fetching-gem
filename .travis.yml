@@ -4,9 +4,10 @@ script:
   - bundle exec rubocop --display-cop-names
 sudo: false
 rvm:
-  - 1.9.3
-  - 2.0
-  - 2.1
-  - 2.2
-  - jruby
-  - rbx-2
+  - ruby-1.9.3-p551
+  - ruby-2.0.0-p648
+  - ruby-2.1.10
+  - ruby-2.2.7
+  - ruby-2.3.4
+  - ruby-2.4.1
+  - jruby-9.1.5.0
