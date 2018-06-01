@@ -16,7 +16,7 @@ class Fetching
     class object_id == equal?
     define_singleton_method singleton_class
     respond_to?
-    nil?
+    nil? tap
   ).freeze
 
   all_methods = instance_methods.map(&:to_s).grep(/\A[^_]/)

@@ -33,6 +33,13 @@ RSpec.describe Fetching do
     end
   end
 
+  it 'can be #tap()ed' do
+    f = Fetching(foo: 'bar')
+    f.tap do |fetching_obj|
+      expect(fetching_obj).to eq(f)
+    end
+  end
+
   it 'has a nice #to_s' do
     nice_to_s = '{:one=>1, :two=>{"two"=>2}, :ary=>[1, 2], :object_ary=>[{}, {:three=>3}]}'
     expect(subject.to_s).to eq(nice_to_s)
