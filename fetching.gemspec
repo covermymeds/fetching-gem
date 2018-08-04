@@ -7,13 +7,11 @@ Gem::Specification.new do |spec|
   spec.version       = Fetching::VERSION
   spec.authors       = ['Michael Gee', 'Mark Lorenz']
   spec.email         = ['mgee@covermymeds.com', 'mlorenz@covermymeds.com']
-  spec.description   = 'More sass in more structs.'
+  spec.description   = "Strict wrapper for Hashes and Arrays that doesn't return nil"
 
   spec.summary       = <<-HEREDOC
-This gem is a work in progress.  The implementation code is not what's
-important.  What is important: Don't de-serialize API responses in to
-hashes and arrays.  Use a "strict" object that inforces key presence,
-and array bounds.}
+Don't de-serialize API responses in to hashes and arrays.
+Use a "strict" object that inforces key presence and array bounds.
   HEREDOC
 
   spec.homepage      = ''
