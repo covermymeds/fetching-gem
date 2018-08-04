@@ -6,24 +6,29 @@ AllCops:
     - fetching.gemspec
     - rubocop-rspec
 
-Style/Documentation:
+Layout/EmptyLinesAroundClassBody:
   Enabled: false
 
-Style/EmptyLinesAroundClassBody:
+Layout/EmptyLinesAroundModuleBody:
   Enabled: false
 
-Style/EmptyLinesAroundModuleBody:
+Layout/EmptyLinesAroundBlockBody:
   Enabled: false
 
-Style/EmptyLinesAroundBlockBody:
-  Enabled: false
+Layout/IndentHeredoc:
+  Exclude:
+    - fetching.gemspec
+
+Metrics/BlockLength:
+  Exclude:
+    - fetching.gemspec
 
 Metrics/LineLength:
   Max: 100
 
+Style/Documentation:
+  Enabled: false
+
 Style/RegexpLiteral:
   Exclude:
     - Guardfile
-
-Style/TrailingCommaInLiteral:
-  EnforcedStyleForMultiline: comma
