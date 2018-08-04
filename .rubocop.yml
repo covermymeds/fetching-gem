@@ -15,6 +15,14 @@ Layout/EmptyLinesAroundModuleBody:
 Layout/EmptyLinesAroundBlockBody:
   Enabled: false
 
+Layout/IndentHeredoc:
+  Exclude:
+    - fetching.gemspec
+
+Metrics/BlockLength:
+  Exclude:
+    - fetching.gemspec
+
 Metrics/LineLength:
   Max: 100
 
