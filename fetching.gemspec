@@ -1,5 +1,4 @@
-# coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
+lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'fetching/version'
 
@@ -15,7 +14,7 @@ This gem is a work in progress.  The implementation code is not what's
 important.  What is important: Don't de-serialize API responses in to
 hashes and arrays.  Use a "strict" object that inforces key presence,
 and array bounds.}
-HEREDOC
+  HEREDOC
 
   spec.homepage      = ''
   spec.license       = 'MIT'
@@ -31,8 +30,8 @@ HEREDOC
   spec.add_development_dependency 'rubocop', '~> 0.58.0'
   spec.add_development_dependency 'rubocop-rspec'
   unless ENV['CI']
-    spec.add_development_dependency 'pry'
     spec.add_development_dependency 'guard-rspec'
     spec.add_development_dependency 'guard-rubocop'
+    spec.add_development_dependency 'pry'
   end
 end

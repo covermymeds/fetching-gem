@@ -7,7 +7,7 @@ rspec_opts = {
   cmd:             'bundle exec rspec',
   all_on_start:    true,
   all_after_pass:  true,
-  failed_mode:     :keep,
+  failed_mode:     :keep
 }
 
 guard :rspec, rspec_opts do
@@ -24,7 +24,7 @@ guard :rspec, rspec_opts do
     [
       "spec/routing/#{m[1]}_routing_spec.rb",
       "spec/#{m[2]}s/#{m[1]}_#{m[2]}_spec.rb",
-      "spec/acceptance/#{m[1]}_spec.rb",
+      "spec/acceptance/#{m[1]}_spec.rb"
     ]
   end
   watch(%r{^spec/support/(.+)\.rb$})                  { 'spec' }
